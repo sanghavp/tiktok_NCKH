@@ -1,3 +1,4 @@
+
 const data = require("../CrawlData/crawler");
 const Videos = require("../Model/video");
 
@@ -25,4 +26,8 @@ exports.addVideo = async function(req, res, next) {
       .catch(function (err) {
          res.status(500).send(err);
       });
+};
+exports.getAllVideo = async function(req, res, next) {
+   let videos = await Videos.find({}).exec();
+   res.send(videos)
 }
