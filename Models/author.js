@@ -5,13 +5,14 @@ const authorSchema = new Schema({
    _id: {
       type: ObjectId
    },
-   name: {
+   userName: {
+      type: String, 
+      unique: true
+   },
+   nickName: {
       type: String
    },
-   profile: {
-      type: String
-   },
-   videoCount: {
+   link: {
       type: Number
    }
 })

@@ -9,7 +9,13 @@ const videoSchema = new Schema({
       type: [String]
    },
    music: {
-      type: Number
+      type: Number, 
+   },
+   musicName: {
+      type: String
+   },
+   musicHref: {
+      type: String
    },
    likeCount: {
       type: String
@@ -23,8 +29,13 @@ const videoSchema = new Schema({
    },
    author: {
       type: String
+   }, 
+   authorNickname: {
+      type: String
+   },
+   authorHref: {
+      type: String
    }
-   
-}, {timestamp: true})
+}, {timestamps: true})
 
 module.exports = mongoose.model('videos', videoSchema);

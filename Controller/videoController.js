@@ -1,6 +1,6 @@
 
 const data = require("../CrawlData/crawler");
-const Videos = require("../Model/video");
+const Videos = require("../Models/video");
 
 exports.test = async function(req, res) {
    res.send("truy cập thành công!");
@@ -11,11 +11,15 @@ exports.addVideo = async function(req, res, next) {
       const video = {
          title: data.Title[i],
          tag: data.tag[i],
-         music: data.MusicId[i],
+         MusicId: data.MusicId[i],
+         musicName: data.Music[i],
+         musicHref: data.MusicHref[i],
          likeCount: data.likeCount[i],
          commentCount: data.commentCount[i],
          shareCount: data.shareCount[i],
-         author: data.userName[i]
+         author: data.userName[i],
+         authorNickname: data.authorName[i],
+         authorHref: data.authorHref[i]
       }
       listVideo.push(video)
    };
