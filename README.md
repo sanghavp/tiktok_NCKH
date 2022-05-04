@@ -8,6 +8,10 @@
 - Sau khi tải xong thì thực hiện chạy chương trình tại terminal bằng cú pháp: 
    + "npm install" để tải toàn bộ thư viện của dự án.
    + "node app.js". Nếu bạn có cài sẵn nodemon trong máy thì nên chạy "nodemon app.js" để lắng nghe sự thay đổi và tự động chạy lại khi lưu file.
+<<<<<<< HEAD
+=======
+ - Sau này thư mục sẽ vẫn được viết thêm nên khi có thay đổi bạn chỉ cần vào terminal thực hiện lệnh "git pull" là đã có thể tải thêm những phần thay đổi trong code mà không cần tải lại toàn bộ gây tốn dung lượng và khó kiểm soát.
+>>>>>>> c902c9f0f8365a0422271ec8ebedba6d78b22625
 ### Chạy chương trình
 - Khi chạy thì hệ thống sẽ tự động vào web để lấy dữ liệu. Mặc định khi up lên thì mình thực hiện crawl số ít dữ liệu để tránh mất thời gian. Nếu bạn muốn lấy nhiều dữ liệu hơn thì có thể thay đổi giá trị biến MAX_SCROLL trong file crawler.js trong thư mục CrawlData (./CrawlData/crawler.js).
 
