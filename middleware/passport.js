@@ -17,7 +17,7 @@ passport.use( new JwtStrategy({
          }
          done(null, user)
       } catch (error) {
-         console.log("test test");
+         // console.log("test test");
          done(error, false)
       }
    }

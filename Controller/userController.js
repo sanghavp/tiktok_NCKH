@@ -27,8 +27,16 @@ exports.createUser = async function (req, res) {
    }
 }
 exports.getAllUser = async function(req, res) {
-   const users = await Users.find({}).exec();
-   res.send(users);
+   try {
+      if(req.user.isAdmin){
+         const users = await Users.find({}).exec();
+         res.send(users);
+      }else{
+         res.status(403).json("Bạn không có quyền thực hiện thao tác này")
+      }
+   } catch (error) {
+      res.status(401).json("hãy đăng nhập và thử lại!")
+   }
 }
 exports.getAnUser = async function(req, res) {
    Users.findById(req.params.id, function(err, user){
@@ -38,16 +46,21 @@ exports.getAnUser = async function(req, res) {
       res.send(user)
    })
 }
-exports.updateUsers = async function (req, res) {
-   Users.findByIdAndUpdate(req.params.id, {$set : req.body}, function(err) {
-      if(err) {
-         res.status(500).json(err)
+exports.updateUser = async function (req, res) {
+   try{
+      if(req.user.id == req.params.id || req.user.isAdmin) {
+         Users.findByIdAndUpdate(req.params.id, {$set : req.body}, function() {
+            res.status(200).json("Cập nhật người dùng thành công!")
+         })
+      }else{
+         res.status(403).json("Bạn không được phép làm điều này!")
       }
-      res.status(200).json("Cập nhật người dùng thành công!")
-   })
+   }catch(err){
+      res.status(500).json(err)
+   }
 }
-exports.deleteUser = async function(req, res) {
-   // console.log(req.user.id)
+exports.deleteUser = async function(req, res, user) {
+   console.log(req.params.id)
    try {
       // Kiểm tra nếu đúng là người dùng đó hoặc đó là admin thì mới có thể xóa người dùng
       // Chỉ chính người dùng mới có thẻ xóa được chính mình hoặc chỉ admin mới có thể xóa người dùng
@@ -57,7 +70,6 @@ exports.deleteUser = async function(req, res) {
          // res.status(200).json("xóa người dùng thành công!")
          // Thông báo giả
          res.status(200).json("xóa người dùng thành công!");
-         console.log("test");
       }else{
          console.log("test");
          res.status(403).json("Bạn không thể xóa người khác!")
@@ -71,7 +83,7 @@ const GenerateAccessToken = function(user) {
    return jwt.sign({
       id: user.id,
       isAdmin: user.isAdmin
-   }, 
+   },
    process.env.JWT_ACCESS_KEY, 
    {expiresIn: "23h"}
    );

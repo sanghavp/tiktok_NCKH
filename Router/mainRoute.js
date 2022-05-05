@@ -23,9 +23,10 @@ router.post('/music', music_controller.addMusic);
 
 // User Route
 router.post('/user', user_controller.createUser)
-router.get('/user', user_controller.getAllUser)
-router.get('/user/:id', user_controller.getAnUser)
-router.delete('/user/:id', user_controller.deleteUser)
+router.get('/user', passport.authenticate('jwt', {session: false}), user_controller.getAllUser)
+router.get('/user/:id',  user_controller.getAnUser)
+router.put('/user/:id', passport.authenticate('jwt', {session: false}), user_controller.updateUser)
+router.delete('/user/:id', passport.authenticate('jwt', {session: false}), user_controller.deleteUser)
 router.post('/user/login',  user_controller.user_login);
 router.post('/user/refresh/:id',passport.authenticate('jwt', {session: false}), user_controller.refreshToken);
 module.exports = router;
