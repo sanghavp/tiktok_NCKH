@@ -10,6 +10,7 @@ const passportConfig = require('../middleware/passport')
 const video_controller = require("../Controller/videoController")
 const music_controller = require("../Controller/musicController");
 const user_controller = require('../Controller/userController')
+const search_controller = require('../Controller/searchController')
 // Test 
 router.get('/test', video_controller.test);
 
@@ -17,7 +18,7 @@ router.get('/test', video_controller.test);
 router.get('/video', video_controller.getAllVideo)
 router.post('/video', video_controller.addVideo)
 
-// Music controller
+// Music route
 router.get('/music', music_controller.getAllMusic);
 router.post('/music', music_controller.addMusic);
 
@@ -29,4 +30,8 @@ router.put('/user/:id', passport.authenticate('jwt', {session: false}), user_con
 router.delete('/user/:id', passport.authenticate('jwt', {session: false}), user_controller.deleteUser)
 router.post('/user/login',  user_controller.user_login);
 router.post('/user/refresh/:id',passport.authenticate('jwt', {session: false}), user_controller.refreshToken);
+
+// Search key route
+router.post('/searchKey', passport.authenticate('jwt', {session: false}), search_controller.addSearchKey);
+router.get('/searchKey', passport.authenticate('jwt', {session: false}), search_controller.getSearchKey);
 module.exports = router;
