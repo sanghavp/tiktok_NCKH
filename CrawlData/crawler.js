@@ -20,7 +20,7 @@ let shareCount = [];
   const page = await browser.newPage()
   await page.goto('https://www.tiktok.com')
 
-  const MAX_SCROLL = 0; 
+  const MAX_SCROLL = 100;
 
  
   let lastHeight = await page.evaluate('document.body.scrollHeight');

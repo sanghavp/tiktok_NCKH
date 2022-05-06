@@ -34,4 +34,6 @@ router.post('/user/refresh/:id',passport.authenticate('jwt', {session: false}), 
 // Search key route
 router.post('/searchKey', passport.authenticate('jwt', {session: false}), search_controller.addSearchKey);
 router.get('/searchKey', passport.authenticate('jwt', {session: false}), search_controller.getSearchKey);
+router.delete('/searchKey/:id', passport.authenticate('jwt', {session: false}), search_controller.deleteSearchKey);
+
 module.exports = router;
