@@ -15,25 +15,25 @@ const search_controller = require('../Controller/searchController')
 router.get('/test', video_controller.test);
 
 // Video Route
-router.get('/video', video_controller.getAllVideo)
-router.post('/video', video_controller.addVideo)
+router.get('/video', cors(), video_controller.getAllVideo)
+router.post('/video', cors(), video_controller.addVideo)
 
 // Music route
-router.get('/music', music_controller.getAllMusic);
-router.post('/music', music_controller.addMusic);
+router.get('/music', cors(), music_controller.getAllMusic);
+router.post('/music', cors(), music_controller.addMusic);
 
 // User Route
-router.post('/user', user_controller.createUser)
-router.get('/user', passport.authenticate('jwt', {session: false}), user_controller.getAllUser)
-router.get('/user/:id',  user_controller.getAnUser)
-router.put('/user/:id', passport.authenticate('jwt', {session: false}), user_controller.updateUser)
-router.delete('/user/:id', passport.authenticate('jwt', {session: false}), user_controller.deleteUser)
-router.post('/user/login',  user_controller.user_login);
-router.post('/user/refresh/:id',passport.authenticate('jwt', {session: false}), user_controller.refreshToken);
+router.post('/user',cors(), user_controller.createUser)
+router.get('/user', passport.authenticate('jwt', {session: false}),cors(), user_controller.getAllUser)
+router.get('/user/:id', cors(), user_controller.getAnUser)
+router.put('/user/:id', passport.authenticate('jwt', {session: false}),cors(), user_controller.updateUser)
+router.delete('/user/:id', passport.authenticate('jwt', {session: false}),cors(), user_controller.deleteUser)
+router.post('/user/login', cors(), user_controller.user_login);
+router.post('/user/refresh/:id',passport.authenticate('jwt', {session: false}),cors(), user_controller.refreshToken);
 
 // Search key route
-router.post('/searchKey', passport.authenticate('jwt', {session: false}), search_controller.addSearchKey);
-router.get('/searchKey', passport.authenticate('jwt', {session: false}), search_controller.getSearchKey);
-router.delete('/searchKey/:id', passport.authenticate('jwt', {session: false}), search_controller.deleteSearchKey);
+router.post('/searchKey', passport.authenticate('jwt', {session: false}), cors(), search_controller.addSearchKey);
+router.get('/searchKey', passport.authenticate('jwt', {session: false}), cors(), search_controller.getSearchKey);
+router.delete('/searchKey/:id', passport.authenticate('jwt', {session: false}), cors(), search_controller.deleteSearchKey);
 
 module.exports = router;

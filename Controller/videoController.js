@@ -28,7 +28,7 @@ exports.addVideo = async function(req, res, next) {
          res.json(docs);
       })
       .catch(function (err) {
-         res.status(500).send(err);
+         res.status(500).json(err);
       });
 };
 exports.getAllVideo = async function(req, res, next) {
