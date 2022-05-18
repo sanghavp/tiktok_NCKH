@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 // const schedule = require('node-schedule');
 const passportConfig = require('../middleware/passport')
+const cors = require('cors');
 
 
 // includes controller
@@ -11,7 +12,7 @@ const video_controller = require("../Controller/videoController")
 const music_controller = require("../Controller/musicController");
 const user_controller = require('../Controller/userController')
 const search_controller = require('../Controller/searchController')
-// Test 
+// Test
 router.get('/test', video_controller.test);
 
 // Video Route
