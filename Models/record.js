@@ -1,15 +1,15 @@
-const mongoose = require('mongoose');
+const  mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const videoSchema = new Schema({
-   title: {
+const recordSchema = new Schema({
+   recordId: {
+      type: Schema.Types.ObjectId,
+   },
+   Title: {
       type: String
    },
    tag: {
       type: [String]
-   },
-   music: {
-      type: Number, 
    },
    musicName: {
       type: String
@@ -20,7 +20,9 @@ const videoSchema = new Schema({
    likeCount: {
       type: String
    },
-   
+   name: {
+      type: String
+   },
    commentCount: {
       type: String
    },
@@ -29,7 +31,7 @@ const videoSchema = new Schema({
    },
    author: {
       type: String
-   }, 
+   },
    authorNickname: {
       type: String
    },
@@ -38,4 +40,4 @@ const videoSchema = new Schema({
    }
 }, {timestamps: true})
 
-module.exports = mongoose.model('videos_test', videoSchema);
+module.exports = mongoose.model('record', recordSchema);

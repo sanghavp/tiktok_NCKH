@@ -15,13 +15,14 @@ const UserSchema = new Schema ({
       type: String,
       match: /(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/,
       // match: /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/, 
-      unique: true, 
+      unique: true,
       required: false
    },
    email: {
       type: String,
       match: /.+\@.+\..+/,
-      unique: true
+      unique: true,
+      required: true
    }, 
    bidthOfdate: {
       type: Date,
