@@ -25,7 +25,7 @@ router.post('/videos', cors(), video_controller.addVideo)
 router.get('/music', cors(), music_controller.getAllMusic);
 router.post('/music', cors(), music_controller.addMusic);
 
-// User Route
+// User Route 
 router.post('/user',cors(), user_controller.createUser)
 router.get('/user', passport.authenticate('jwt', {session: false}),cors(), user_controller.getAllUser)
 router.get('/user/:id', cors(), user_controller.getAnUser)
@@ -41,6 +41,11 @@ router.delete('/searchKey/:id', passport.authenticate('jwt', {session: false}), 
 
 // record route
 router.post('/record', passport.authenticate('jwt', {session: false}), cors(), record_controller.addRecord);
-router.delete('/record', passport.authenticate('jwt', {session: false}), cors(), record_controller.deleteLink);
+router.post('/record_name/:id', passport.authenticate('jwt', {session: false}), cors(), record_controller.searchByLink)
+router.post('/record/:id', passport.authenticate('jwt', {session: false}), cors(), record_controller.addRecordContent)
+router.get('/record', passport.authenticate('jwt', {session: false}), cors(), record_controller.getRecordName);
+router.get('/record/:id', passport.authenticate('jwt', {session: false}), cors(), record_controller.getRecords);
+router.delete('/record/:id', passport.authenticate('jwt', {session: false}), cors(), record_controller.deleteLink);
+
 
 module.exports = router;
